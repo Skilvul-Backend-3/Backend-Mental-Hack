@@ -33,10 +33,15 @@ module.exports = {
     }
   },
   updateUser: async (req, res) => {
+    let data = req.body
+    console.log(data);
+    const saltRounds = 10;
+    const hash = bcrypt.hashSync(data.password, saltRounds);
+    data.password = hash;
     try {
       const updateduser = await User.updateOne(
         { _id: req.params.id },
-        { $set: req.body }
+        { $set: data }
       );
       res.status(200).json(updateduser);
     } catch (error) {
