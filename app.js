@@ -13,7 +13,7 @@ db.then(() => {
 });
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json())
 app.use(allRouter);
 
 app.listen(process.env.PORT, () => {
