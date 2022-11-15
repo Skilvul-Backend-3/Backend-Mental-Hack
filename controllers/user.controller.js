@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const bcrypt = require('bcrypt')
 
 module.exports = {
   getUsers: async (req, res) => {
@@ -19,7 +20,11 @@ module.exports = {
   },
 
   addUser: async (req, res) => {
-    const user = new User(req.body);
+    let data = req.body
+    const saltRounds = 10;
+    const hash = bcrypt.hashSync(data.password, saltRounds);
+    data.password = hash;
+    const user = new User(data);
     try {
       const inserteduser = await user.save();
       res.status(201).json(inserteduser);
