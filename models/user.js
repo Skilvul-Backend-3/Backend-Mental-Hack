@@ -19,7 +19,7 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: [true, 'password is required'],
-    trim: true
+    trim: true,
     // minLength: 4,
     // maxLength: 16,
     // match: [/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,1024}$/, 'password mush have capital, special, and number']
@@ -28,6 +28,9 @@ const userSchema = new Schema({
     type: String,
     enum: ['user', 'admin'],
     required: [true, 'role is required'],
+  },
+  refresh_token: {
+    type: String,
   },
 });
 

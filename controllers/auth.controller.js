@@ -4,7 +4,24 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 module.exports = {
-  Register: async (req, res) => {},
+  Register: async (req, res) => {
+    let { name, email, password, confPassword } = req.body;
+    if (password !== confPassword)
+      return res
+        .status(400)
+        .json({ message: 'Password dan Confirm Password tidak cocok' });
+    const saltRounds = 10;
+    const hash = bcrypt.hashSync(password, saltRounds);
+    password = hash;
+    const role = 'user';
+    const user = new User({ name, email, password, role });
+    try {
+      const inserteduser = await user.save();
+      res.status(201).json(inserteduser);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  },
   Login: async (req, res) => {
     try {
       // get body
