@@ -7,14 +7,31 @@ const allRouter = require('./routes');
 
 const app = express();
 
+// check db
 db.then(() => {
   console.log('database terkoneksi');
 }).catch((err) => {
   console.log(err);
 });
 
-app.use(cors());
-app.use(express.json())
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: 'auto',
+    },
+  })
+);
+
+app.use(
+  cors({
+    credentials: true,
+    origin: ['http://localhost:3000'],
+  })
+);
+app.use(express.json());
 app.use(allRouter);
 
 app.listen(process.env.PORT, () => {
