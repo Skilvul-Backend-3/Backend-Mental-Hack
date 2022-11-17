@@ -4,11 +4,11 @@ require('dotenv').config();
 
 module.exports = {
   verifyToken: (req, res, next) => {
+    // get token
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if (token == null) return res.sendStatus(401);
-
-    if (token == null) return res.sendStatus(401);
+    // verify token
     jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
       if (err) return res.sendStatus(403);
       req.session.email = decoded.email;
