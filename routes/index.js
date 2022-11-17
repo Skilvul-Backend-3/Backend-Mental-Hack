@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// const videoRouter = require("./video.router");
+const videoRouter = require("./video.router");
 const userRouter = require('./user.router');
 
 router.get('/', (req, res) => {
@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/users', userRouter);
-
-// router.use("/video", videoRouter);
+router.use("/video", videoRouter);
 
 module.exports = router;

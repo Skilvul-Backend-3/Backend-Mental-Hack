@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const DB_URL =
-  'mongodb+srv://Mental-Hack:Mental-Hack@mental-hack.hv1s8fq.mongodb.net/mental_hack';
+const DB_URL = 'mongodb://localhost:27017/mental_hack';
+// 'mongodb+srv://Mental-Hack:Mental-Hack@mental-hack.hv1s8fq.mongodb.net/mental_hack';
 
 const db = mongoose.connect(DB_URL, {
   useNewUrlParser: true, // handle deprecated url
