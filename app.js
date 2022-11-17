@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const db = require('./config/db');
 const allRouter = require('./routes');
@@ -24,13 +25,13 @@ app.use(
     },
   })
 );
-
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:3000'],
+    origin: ['http://127.0.0.1:5173'],
   })
 );
+app.use(cookieParser());
 app.use(express.json());
 app.use(allRouter);
 
