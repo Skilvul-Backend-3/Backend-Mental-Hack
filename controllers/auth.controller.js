@@ -24,7 +24,13 @@ module.exports = {
       const inserteduser = await user.save();
       res.status(201).json(inserteduser);
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      if (error.code == 11000) {
+        res.status(400).json({
+          message: 'Email telah terdaftar',
+        });
+      } else {
+        res.status(400).json({ message: error.message });
+      }
     }
   },
   Login: async (req, res) => {
