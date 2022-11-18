@@ -12,7 +12,7 @@ module.exports = {
   },
   getUserById: async (req, res) => {
     try {
-      const user = await User.findById(req.params.id);
+      const user = await User.findById(req.params.id, "-__v -password -refresh_token");
       res.json(user);
     } catch (error) {
       res.status(404).json({ message: error.message });
