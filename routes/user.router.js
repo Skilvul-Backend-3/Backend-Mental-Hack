@@ -10,8 +10,8 @@ const {
 } = require('../controllers/user.controller');
 const { verifyToken, adminOnly } = require('../middleware/AuthUser');
 
-// router.get('/', verifyToken, adminOnly, getUsers);
-router.get('/', getUsers);
+router.get('/', verifyToken, adminOnly, getUsers);
+// router.get('/', getUsers);
 router.get('/:id', getUserById);
 router.post('/', addUser);
 router.patch('/:id', updateUser);

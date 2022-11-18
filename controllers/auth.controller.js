@@ -90,10 +90,6 @@ module.exports = {
           message: 'success login',
           token,
         });
-      } else {
-        req.status(401).json({
-          message: 'email or password incorrect',
-        });
       }
     } catch (error) {
       res.status(500).json({
