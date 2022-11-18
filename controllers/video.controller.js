@@ -1,9 +1,13 @@
-// const jwt = require("jsonwebtoken");
 const Video = require("../models/video");
 
 module.exports = {
-  getAllVideo: async (req, res, next) => {
-
+  getAllVideo: async (req, res) => {
+    try {
+      const video = await Video.find({});
+      res.json(video);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
   },
 
   getVideoById: async (req, res) => {
@@ -13,7 +17,7 @@ module.exports = {
 
       res.status(200).json({
         message: "Sukses mendapatkan data video",
-        data: video
+        data: video,
       });
     } catch (error) {
       console.log(error);
@@ -27,7 +31,7 @@ module.exports = {
     video.save();
 
     res.status(200).json({
-      message: "Video baru berhasil ditambahkan!"
+      message: "Video baru berhasil ditambahkan!",
     });
   },
 
@@ -40,7 +44,7 @@ module.exports = {
     await video.save();
 
     res.status(200).json({
-      message: "Data berhasil diupdate!"
+      message: "Data berhasil diupdate!",
     });
 
     video.save();
@@ -54,7 +58,7 @@ module.exports = {
 
     res.json({
       message: "Data yang dipilih berhasil dihapus!",
-      data: "terhapus"
+      data: "terhapus",
     });
   },
-}
+};

@@ -1,18 +1,19 @@
 const express = require("express");
-const videoRouter = express.Router();
+const router = express.Router();
 
 const {
   getAllVideo,
   getVideoById,
   addVideo,
   updateVideoById,
-  deleteVideoById
-} = require('../controllers/video.controller')
+  deleteVideoById,
+} = require("../controllers/video.controller");
+const { verifyToken, adminOnly } = require("../middleware/AuthUser");
 
-videoRouter.get('/', getAllVideo)
-videoRouter.get('/:id', getVideoById)
-videoRouter.post('/', addVideo)
-videoRouter.put('/:id', updateVideoById)
-videoRouter.delete('/:id', deleteVideoById)
+router.get("/", verifyToken, adminOnly, getAllVideo);
+router.get("/:id", getVideoById);
+router.post("/", addVideo);
+router.patch("/:id", updateVideoById);
+router.delete("/:id", deleteVideoById);
 
-module.exports = videoRouter
+module.exports = router;
