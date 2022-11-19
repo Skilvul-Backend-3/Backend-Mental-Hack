@@ -9,5 +9,6 @@ router.get('/', (req, res) => {
 });
 router.use('/auth', authRouter);
 router.use('/users', userRouter);
+router.use('/article',)
 
 module.exports = router;
