@@ -57,7 +57,7 @@ module.exports = {
         },
         process.env.SECRET_KEY,
         {
-          expiresIn: '15s',
+          expiresIn: '1h',
         }
       );
       // refresh token
