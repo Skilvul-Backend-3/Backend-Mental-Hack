@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const DB_URL =
-  'mongodb+srv://Mental-Hack:Mental-Hack@mental-hack.lmwpbi5.mongodb.net/mental_hack';
+
+const DB_URL = process.env.MONGO_URL
 
 const db = mongoose.connect(DB_URL, {
   useNewUrlParser: true, // handle deprecated url
