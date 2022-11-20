@@ -36,13 +36,14 @@ module.exports= {
     postBlog: async (req, res)=>{
         const data = req.body
         const blog = await Blog(data)
+
         try {
             blog.save()
             res.status(200).json({
             message : "luluk pintar"
             })
         } catch (error) {
-            res.json({
+            res.status(404).json({
             message : "error"
             })
         }
