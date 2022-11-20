@@ -12,7 +12,7 @@ const videoSchema = new Schema({
   },
   tanggalUpload: {
     type: Date,
-    default: date.now(),
+    default: Date.now(),
     require: true,
   },
 });
