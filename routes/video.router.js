@@ -8,7 +8,7 @@ const {
   updateVideoById,
   deleteVideoById,
 } = require("../controllers/video.controller");
-const { verifyToken, adminOnly } = require("../middleware/AuthUser");
+const { verifyToken, adminOnly } = require("../middleware/authUser");
 
 router.get("/", verifyToken, getAllVideo);
 router.get("/:id", verifyToken, getVideoById);

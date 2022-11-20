@@ -7,7 +7,7 @@ const {
     deleteBlogById
 } = require('../controllers/blog.controller');
 const router = express.Router();
-const { verifyToken, adminOnly } = require('../middleware/AuthUser');
+const { verifyToken, adminOnly } = require('../middleware/authUser');
 
 router.get("/",verifyToken,getAllBlog)
 router.get("/:id",verifyToken,getBlogById)
