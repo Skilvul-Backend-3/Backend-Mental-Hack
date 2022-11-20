@@ -4,16 +4,17 @@ const { Schema } = mongoose;
 const videoSchema = new Schema({
   judul: {
     type: String,
-    require: true
+    require: true,
   },
   deskripsi: {
     type: String,
-    require: true
+    require: true,
   },
   tanggalUpload: {
     type: Date,
-    require: true
-  }
+    default: date.now(),
+    require: true,
+  },
 });
 
 const Video = mongoose.model("Video", videoSchema);

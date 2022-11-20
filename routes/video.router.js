@@ -10,10 +10,10 @@ const {
 } = require("../controllers/video.controller");
 const { verifyToken, adminOnly } = require("../middleware/AuthUser");
 
-router.get("/", verifyToken, adminOnly, getAllVideo);
-router.get("/:id", getVideoById);
-router.post("/", addVideo);
-router.patch("/:id", updateVideoById);
-router.delete("/:id", deleteVideoById);
+router.get("/", verifyToken, getAllVideo);
+router.get("/:id", verifyToken, getVideoById);
+router.post("/", verifyToken, adminOnly, addVideo);
+router.patch("/:id", verifyToken, adminOnly, updateVideoById);
+router.delete("/:id", verifyToken, adminOnly, deleteVideoById);
 
 module.exports = router;
