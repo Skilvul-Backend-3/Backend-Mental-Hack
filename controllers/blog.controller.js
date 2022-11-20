@@ -19,7 +19,7 @@ module.exports= {
     getBlogById: async (req, res)=>{
         const { id } = req.params
 
-        const blog = await Blog.find(item => item.id == id)
+        const blog = await Blog.findById(id)
         try {
             res.status(200).json({
                 message :"success",
@@ -53,7 +53,7 @@ module.exports= {
     updateBlogById: async (req, res)=>{
         const data = req.body
         const { id } = req.params
-        const update = await Blog.updateOne(id,data);
+        const update = await Blog.updateOne({_id: id},data);
         try {
             res.status(200).json({
                 message: "Selamat tidak error *emot jempol",
@@ -63,22 +63,22 @@ module.exports= {
             res.status(404).json({
                 message: "error bang"
             })
-        }  
+        }
     },
 
     deleteBlogById: async (req, res)=>{
         const { id } = req.params
-        const blog = await Blog.find(item => item.id == id)
+        console.log(id);
         try {
-            Blog.deleteOne(blog)
+            await Blog.deleteOne({_id: id})
             res.status(200).json({
             message: "Selamat tidak error *emot jempol"
+            
         })
         } catch (error) {
             res.status(404).json({
             message: "error"
         })
         }
-        
     }
 }
